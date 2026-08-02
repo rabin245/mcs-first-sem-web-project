@@ -1,0 +1,98 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Get a free hosted Postgres database in seconds: `npx create-db`
+
+generator client {
+  provider = "prisma-client-js"
+  output   = "../generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+model User {
+  id           String        @id @default(uuid())
+  username     String        @unique
+  email        String        @unique
+  passwordHash String        @map("password_hash")
+  createdAt    DateTime      @default(now()) @map("created_at")
+  updatedAt    DateTime      @updatedAt @map("updated_at")
+  boards       Board[]       @relation("UserBoards")
+  tasks        Task[]        @relation("UserTasks")
+  comments     Comment[]
+  attachments  Attachment[]
+  boardMembers BoardMember[]
+}
+
+model Board {
+  id            String        @id @default(uuid())
+  name          String
+  description   String?
+  columns       String[]      @default(["todo", "in-progress", "done"])
+  createdById   String
+  creator       User          @relation("UserBoards", fields: [createdById], references: [id])
+  createdAt     DateTime      @default(now()) @map("created_at")
+  updatedAt     DateTime      @updatedAt @map("updated_at")
+  tasks         Task[]
+  members       BoardMember[]
+
+  @@map("boards")
+}
+
+model Task {
+  id            String        @id @default(uuid())
+  board         Board         @relation(fields: [boardId], references: [id])
+  boardId       String
+  title         String
+  description   String?
+  status        String        @default("todo")
+  assignedToId  String?
+  assignee      User?         @relation("UserTasks", fields: [assignedToId], references: [id])
+  dueDate       DateTime?
+  priority      Int?       
+  createdAt     DateTime      @default(now()) @map("created_at")
+  updatedAt     DateTime      @updatedAt @map("updated_at")
+  comments      Comment[]  
+  attachments   Attachment[]
+
+  @@map("tasks")
+}
+
+model Comment {
+  id        String   @id @default(uuid())
+  task      Task     @relation(fields: [taskId], references: [id])
+  taskId    String
+  user      User     @relation(fields: [userId], references: [id])
+  userId    String
+  content   String
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @updatedAt @map("updated_at")
+
+  @@map("comments")
+}
+
+model Attachment {
+  id           String   @id @default(uuid())
+  task         Task     @relation(fields: [taskId], references: [id])
+  taskId       String
+  fileName     String   @map("file_name")
+  filePath     String   @map("file_path")
+  uploadedById String   @map("uploaded_by")
+  uploader     User     @relation(fields: [uploadedById], references: [id])
+  createdAt    DateTime @default(now()) @map("created_at")
+
+  @@map("attachments")
+}
+
+model BoardMember {
+  id      String @id @default(uuid())
+  board   Board  @relation(fields: [boardId], references: [id])
+  boardId String
+  user    User   @relation(fields: [userId], references: [id])
+  userId  String
+
+  @@map("board_members")
+}
+
