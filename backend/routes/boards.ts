@@ -1,9 +1,9 @@
 import express, { Response } from "express";
 import core from "express-serve-static-core";
 import { z } from "zod";
-import { prisma } from "../lib/prisma";
-import { authMiddleware, AuthenticatedRequest } from "../middleware";
-import { validate } from "../lib/validate";
+import { prisma } from "../lib/prisma.js";
+import { authMiddleware, AuthenticatedRequest } from "../middleware.js";
+import { validate } from "../lib/validate.js";
 
 const router = express.Router();
 

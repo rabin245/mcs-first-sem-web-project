@@ -1,6 +1,6 @@
 import { NextFunction, Request, Response } from "express";
 import core from "express-serve-static-core";
-import { verifyToken } from "./jwt";
+import { verifyToken } from "./jwt.js";
 
 export interface AuthenticatedRequest<
   P = core.ParamsDictionary,

@@ -2,12 +2,12 @@ import bodyParser from "body-parser";
 import cors from "cors";
 import dotenv from "dotenv";
 import express, { NextFunction, Request, Response } from "express";
-import authRoutes from "./routes/auth";
-import boardRoutes from "./routes/boards";
-import taskRoutes from "./routes/tasks";
-import userRoutes from "./routes/users";
-import commentRoutes from "./routes/comments";
-import attachmentRoutes from "./routes/attachments";
+import authRoutes from "./routes/auth.js";
+import boardRoutes from "./routes/boards.js";
+import taskRoutes from "./routes/tasks.js";
+import userRoutes from "./routes/users.js";
+import commentRoutes from "./routes/comments.js";
+import attachmentRoutes from "./routes/attachments.js";
 
 dotenv.config();
 

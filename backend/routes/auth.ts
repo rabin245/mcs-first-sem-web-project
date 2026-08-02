@@ -1,10 +1,10 @@
 import bcrypt from "bcryptjs";
 import express, { Request, Response } from "express";
 import { z } from "zod";
-import { prisma } from "../lib/prisma";
-import { generateToken } from "../jwt";
-import { authMiddleware, AuthenticatedRequest } from "../middleware";
-import { validate } from "../lib/validate";
+import { prisma } from "../lib/prisma.js";
+import { generateToken } from "../jwt.js";
+import { authMiddleware, AuthenticatedRequest } from "../middleware.js";
+import { validate } from "../lib/validate.js";
 
 const router = express.Router();
 

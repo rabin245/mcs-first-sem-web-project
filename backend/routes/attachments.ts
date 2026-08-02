@@ -5,9 +5,9 @@ import path from "path";
 import core from "express-serve-static-core";
 import { createClient } from "@supabase/supabase-js";
 import { z } from "zod";
-import { prisma } from "../lib/prisma";
-import { authMiddleware, AuthenticatedRequest } from "../middleware";
-import { validate } from "../lib/validate";
+import { prisma } from "../lib/prisma.js";
+import { authMiddleware, AuthenticatedRequest } from "../middleware.js";
+import { validate } from "../lib/validate.js";
 
 const supabase = createClient(
   process.env.SUPABASE_URL!,
