@@ -74,6 +74,8 @@ web-project/
 
 ## 🚀 Getting Started
 
+**🌐 Live App:** [_live app_](https://rabindra-task-manager.netlify.app/)
+
 To run locally:
 
 ### Prerequisites
