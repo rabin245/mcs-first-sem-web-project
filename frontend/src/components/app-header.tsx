@@ -10,9 +10,7 @@ export function AppHeader() {
   return (
     <header className="sticky top-0 z-40 border-b bg-background/80 backdrop-blur">
       <div className="mx-auto flex h-14 max-w-[1800px] items-center justify-between px-3 sm:px-6">
-        <Link to="/" className="font-semibold tracking-tight">
-          Task Manager
-        </Link>
+        <Link to="/" className="font-semibold tracking-tight">TaskFlow</Link>
         {user && (
           <div className="flex items-center gap-2 sm:gap-3">
             <div className="flex items-center gap-2">

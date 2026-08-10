@@ -1,4 +1,4 @@
-# Task / Project Management System
+# TaskFlow
 
 A Trello like task and project management app. Organize work into boards, arrange tasks across customizable kanban columns, collaborate with team members, and attach files and comments to any task.
 
